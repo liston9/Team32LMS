@@ -23,17 +23,21 @@ namespace LMS.Controllers
         /*******Begin code to modify********/
 
         /// <summary>
-        /// Retreive a JSON array of all departments from the database.
+        /// Retrieve a JSON array of all departments from the database.
         /// Each object in the array should have a field called "name" and "subject",
         /// where "name" is the department name and "subject" is the subject abbreviation.
         /// </summary>
         /// <returns>The JSON array</returns>
         public IActionResult GetDepartments()
-        {            
-            return Json(null);
+        {
+            var query = from d in db.Departments
+                select new
+                {
+                    d.Name,
+                    d.Subject
+                };
+            return Json(query.ToArray());
         }
-
-
 
         /// <summary>
         /// Returns a JSON array representing the course catalog.
