@@ -9,9 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="522d095a-e37b-47e2-b81b-e666af9959e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/Areas/Identity/Pages/Account/Register.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Areas/Identity/Pages/Account/Register.cshtml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/Controllers/AdministratorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/AdministratorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/Views/Administrator/Course.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Views/Administrator/Course.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DpaMonitoringSettings">
-    <option name="autoShow" value="false" />
+    <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,19 +45,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.LMS.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.LMS.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="LMS" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LMS/LMS.csproj" />
@@ -136,19 +135,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>72</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetClassOfferings'">
-            <startOffsets>
-              <option value="2906" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2907" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
           <line>53</line>
           <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetCatalog'">
             <startOffsets>
@@ -175,26 +161,26 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>131</line>
+          <line>142</line>
           <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetUser'">
             <startOffsets>
-              <option value="6157" />
+              <option value="6912" />
             </startOffsets>
             <endOffsets>
-              <option value="6158" />
+              <option value="6913" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>109</line>
+          <line>120</line>
           <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetSubmissionText'">
             <startOffsets>
-              <option value="5120" />
+              <option value="5875" />
             </startOffsets>
             <endOffsets>
-              <option value="5121" />
+              <option value="5876" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />

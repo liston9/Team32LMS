@@ -101,8 +101,7 @@ namespace LMS.Controllers
                     fname = p.FirstName,
                     uid = p.UId
                 }; 
-            JsonResult result = Json(query.ToArray());
-            return Json(query.ToList());
+            return Json(query.ToArray());
         }
 
         /// <summary>
