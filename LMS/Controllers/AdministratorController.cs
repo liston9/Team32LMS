@@ -64,19 +64,23 @@ namespace LMS.Controllers
             return Json(new { success = true});
         }
 
-
         /// <summary>
         /// Returns a JSON array of all the courses in the given department.
         /// Each object in the array should have the following fields:
         /// "number" - The course number (as in 5530)
         /// "name" - The course name (as in "Database Systems")
         /// </summary>
-        /// <param name="subjCode">The department subject abbreviation (as in "CS")</param>
+        /// <param name="subject">The department subject abbreviation (as in "CS")</param>
         /// <returns>The JSON result</returns>
         public IActionResult GetCourses(string subject)
         {
-            
-            return Json(null);
+            var query = from c in db.Courses where subject == c.DId
+                select new
+                {
+                   c.Number,
+                   c.Name
+                };
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -90,12 +94,16 @@ namespace LMS.Controllers
         /// <returns>The JSON result</returns>
         public IActionResult GetProfessors(string subject)
         {
-            
-            return Json(null);
-            
+            var query = from p in db.Professors where p.Department == subject
+                select new
+                {
+                    lname = p.LastName,
+                    fname = p.FirstName,
+                    uid = p.UId
+                }; 
+            JsonResult result = Json(query.ToArray());
+            return Json(query.ToList());
         }
-
-
 
         /// <summary>
         /// Creates a course.
@@ -108,10 +116,20 @@ namespace LMS.Controllers
         /// false if the course already exists, true otherwise.</returns>
         public IActionResult CreateCourse(string subject, int number, string name)
         {           
-            return Json(new { success = false });
+            var course = new Course
+            {
+                DId = subject,
+                Number = (ushort)number,
+                Name = name
+            };
+            
+            if (db.Courses.Contains(course))
+                return Json(new { success = false});
+            
+            db.Courses.Add(course);
+            db.SaveChanges();
+            return Json(new { success = true});
         }
-
-
 
         /// <summary>
         /// Creates a class offering of a given course.
@@ -131,12 +149,42 @@ namespace LMS.Controllers
         /// true otherwise.</returns>
         public IActionResult CreateClass(string subject, int number, string season, int year, DateTime start, DateTime end, string location, string instructor)
         {            
-            return Json(new { success = false});
+            var query = from c in db.Courses
+                where c.DId == subject && c.Number == (ushort)number
+                select c;
+            
+            var classObject = new Class
+            {
+                CourseId = query.First().CourseId,
+                Season = season,
+                Year = (uint)year,
+                StartTime = new TimeOnly(start.Hour, start.Minute, start.Second),
+                EndTime = new TimeOnly(end.Hour, end.Minute, end.Second),
+                Location = location,
+                ProfessorId = instructor
+            };
+
+            var overlappingClasses = from c in db.Classes
+                where c.Location == classObject.Location
+                      && c.Season == classObject.Season && c.Year == classObject.Year
+                      && ((c.StartTime >= classObject.StartTime && c.StartTime <= classObject.EndTime)
+                          || (c.EndTime <= classObject.EndTime && c.EndTime >= classObject.StartTime)
+                          || (c.StartTime >= classObject.StartTime && c.EndTime <= classObject.EndTime)
+                          || (c.StartTime <= classObject.StartTime && c.EndTime >= classObject.EndTime))
+                      select c;
+            
+            var duplicateClasses =  from c in db.Classes
+                where c.CourseId == classObject.CourseId && c.Season == classObject.Season && c.Year == classObject.Year
+                    select c;
+            
+            if (overlappingClasses.Any() || duplicateClasses.Any())
+                return Json(new { success = false});
+            
+            db.Classes.Add(classObject);
+            db.SaveChanges();
+            return Json(new { success = true});
         }
-
-
         /*******End code to modify********/
-
     }
 }
 

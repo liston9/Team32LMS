@@ -196,7 +196,7 @@ namespace LMS.Areas.Identity.Pages.Account
         {
             // create connection to database
             // setup LINQ
-            string nextUID = "u" + (db.Students.Count() + db.Students.Count() + db.Administrators.Count()).ToString("D7");
+            string nextUID = "u" + (db.Students.Count() + db.Professors.Count() + db.Administrators.Count()).ToString("D7");
             if (role == "Student")
             {
                 var student = new Student
