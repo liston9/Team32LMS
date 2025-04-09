@@ -9,8 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="522d095a-e37b-47e2-b81b-e666af9959e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/Controllers/AdministratorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/AdministratorController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/Views/Professor/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Views/Professor/Index.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DpaMonitoringSettings">
-    <option name="firstShow" value="false" />
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,6 +35,10 @@
     &quot;accountId&quot;: &quot;60d03f17-2800-4bd0-9c26-6b3a5cf85cd5&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/39861fa7a938ef7114f6d79e82b3aa23605633e2ceeb88bfa142f053afd6f999/ServerSession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4a9c5bbb691113dae2c85a10194c7fadc49b5ff87f6a663d5dbc213152/QueryableMethodNormalizingExpressionVisitor.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -45,19 +49,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.LMS.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.LMS.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LMS" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LMS/LMS.csproj" />
@@ -87,6 +91,8 @@
       <workItem from="1743470831474" duration="111000" />
       <workItem from="1743470946560" duration="3123000" />
       <workItem from="1743554059361" duration="5829000" />
+      <workItem from="1743562110711" duration="28000" />
+      <workItem from="1744161725144" duration="3747000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <option name="closed" value="true" />
@@ -133,71 +139,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>53</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetCatalog'">
-            <startOffsets>
-              <option value="1992" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1993" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>31</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetDepartments'">
-            <startOffsets>
-              <option value="1043" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1044" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>142</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetUser'">
-            <startOffsets>
-              <option value="6912" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6913" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
-          <line>120</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetSubmissionText'">
-            <startOffsets>
-              <option value="5875" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5876" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
-          <line>119</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'GetStudentsInClass'">
-            <startOffsets>
-              <option value="4191" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4192" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
           <line>142</line>
@@ -288,6 +229,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
+          <line>162</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetUser'">
+            <startOffsets>
+              <option value="7450" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7451" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

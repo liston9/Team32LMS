@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LMS.Models.LMSModels;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 [assembly: InternalsVisibleTo( "LMSControllerTests" )]
@@ -51,8 +53,21 @@ namespace LMS.Controllers
         /// </summary>
         /// <returns>The JSON array</returns>
         public IActionResult GetCatalog()
-        {            
-            return Json(null);
+        {
+            var query = from department in db.Departments
+                select new
+                {
+                    subject = department.Subject,
+                    dname = department.Name,
+                    courses = from c in department.Courses
+                        select new
+                        {
+                            number = c.Number,
+                            cname = c.Name,
+                        }
+                };
+                
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -145,7 +160,45 @@ namespace LMS.Controllers
         /// or an object containing {success: false} if the user doesn't exist
         /// </returns>
         public IActionResult GetUser(string uid)
-        {           
+        {
+            var studentQuery = from student in db.Students
+                where student.UId == uid
+                select new
+                {
+                    fname = student.FirstName,
+                    lname = student.LastName,
+                    uid = student.UId,
+                    department = student.Major
+                };
+            
+            if (studentQuery.Any())
+                return Json(studentQuery.First());
+            
+            var profQuery = from prof in db.Professors
+                where prof.UId == uid
+                select new
+                {
+                    fname = prof.FirstName,
+                    lname = prof.LastName,
+                    uid = prof.UId,
+                    department = prof.Department
+                };
+            
+            if (profQuery.Any())
+                return Json(profQuery.First());
+            
+            var adminQuery = from admin in db.Administrators
+                where admin.UId == uid
+                select new
+                {
+                    fname = admin.FirstName,
+                    lname = admin.LastName,
+                    uid = admin.UId,
+                };
+            
+            if (adminQuery.Any())
+                return Json(adminQuery.First());
+                    
             return Json(new { success = false });
         }
 
