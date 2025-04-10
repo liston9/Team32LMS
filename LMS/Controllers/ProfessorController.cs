@@ -118,7 +118,22 @@ namespace LMS_CustomIdentity.Controllers
         /// <returns>The JSON array</returns>
         public IActionResult GetStudentsInClass(string subject, int num, string season, int year)
         {
-            return Json(null);
+
+            var query = from g in db.Grades
+                join s in db.Students on g.StudentId equals s.UId
+                join courses in db.Courses on subject equals courses.DId
+                join classes in db.Classes on season equals classes.Season
+                where num == classes.CourseId && year == classes.Year
+                    select new
+                    {
+                        fname = s.FirstName,
+                        lname = s.LastName,
+                        uid = s.UId,
+                        dob = s.Dob,
+                        grade = g.Grade1
+                    }
+            ;
+            return Json(query.ToArray());
         }
 
 
@@ -250,8 +265,19 @@ namespace LMS_CustomIdentity.Controllers
         /// <param name="uid">The professor's uid</param>
         /// <returns>The JSON array</returns>
         public IActionResult GetMyClasses(string uid)
-        {            
-            return Json(null);
+        {
+            var query = from courses in db.Courses
+                join classes in db.Classes on courses.CourseId equals classes.CourseId
+                where uid == classes.ProfessorId
+                select new
+                {
+                    subject = courses.DId,
+                    number = courses.Number,
+                    name = courses.Name,
+                    season = classes.Season,
+                    year = classes.Year,
+                };
+            return Json(query.ToArray());
         }
 
 
