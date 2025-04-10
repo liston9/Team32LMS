@@ -75,8 +75,21 @@ namespace LMS.Controllers
         /// <param name="uid">The uid of the student</param>
         /// <returns>The JSON array</returns>
         public IActionResult GetMyClasses(string uid)
-        {           
-            return Json(null);
+        {
+            var query = from Courses in db.Courses
+                join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                join grades in db.Grades on classes.ClassId equals grades.ClassId
+                where uid == grades.StudentId
+                select new
+                {
+                    subject = Courses.DId,
+                    number = Courses.Number,
+                    name = Courses.Name,
+                    season = classes.Season,
+                    year = classes.Year,
+                    grade = grades.Grade1
+                };
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -135,8 +148,26 @@ namespace LMS.Controllers
         /// <returns>A JSON object containing {success = {true/false}. 
         /// false if the student is already enrolled in the class, true otherwise.</returns>
         public IActionResult Enroll(string subject, int num, string season, int year, string uid)
-        {          
-            return Json(new { success = false});
+        {
+            var classQuery = from Courses in db.Courses join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                where Courses.DId == subject && Courses.Number == num && classes.Season == season && classes.Year == year
+                    select classes.ClassId;
+            
+            var gradeQuery = from Grade in db.Grades where Grade.StudentId == uid select Grade;
+            if (gradeQuery.Any())
+            {
+                return Json(new { success = false });
+            }
+
+            var enrollee = new Grade
+            {
+                Grade1 = "--",
+                ClassId = classQuery.First(),
+                StudentId = uid
+            };
+            db.Grades.Add(enrollee);
+            db.SaveChanges();
+            return Json(new { success = true });
         }
 
 
