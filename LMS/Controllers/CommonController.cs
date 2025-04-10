@@ -118,8 +118,16 @@ namespace LMS.Controllers
         /// <param name="asgname">The name of the assignment in the category</param>
         /// <returns>The assignment contents</returns>
         public IActionResult GetAssignmentContents(string subject, int num, string season, int year, string category, string asgname)
-        {            
-            return Content("");
+        {
+            var query = from Courses in db.Courses
+                join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                join cat in db.AssignmentCategories on classes.ClassId equals cat.ClassId
+                join assign in db.Assignments on cat.CategoryId equals assign.CategoryId
+                where Courses.DId == subject && Courses.Number == num && classes.Season == season &&
+                      classes.Year == year && cat.Name == category && assign.Name == asgname
+                select assign.Contents;
+            
+            return Content(query.First());
         }
 
 

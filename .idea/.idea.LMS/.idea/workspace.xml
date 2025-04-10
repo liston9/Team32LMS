@@ -9,9 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="522d095a-e37b-47e2-b81b-e666af9959e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LMS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Controllers/StudentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/Views/Professor/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/Views/Professor/Index.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +36,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/39861fa7a938ef7114f6d79e82b3aa23605633e2ceeb88bfa142f053afd6f999/ServerSession.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4a9c5bbb691113dae2c85a10194c7fadc49b5ff87f6a663d5dbc213152/QueryableMethodNormalizingExpressionVisitor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -97,6 +96,8 @@
       <workItem from="1743562110711" duration="28000" />
       <workItem from="1744161725144" duration="3747000" />
       <workItem from="1744244310057" duration="3005000" />
+      <workItem from="1744249297489" duration="72000" />
+      <workItem from="1744249380608" duration="1443000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <option name="closed" value="true" />
@@ -144,17 +145,82 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
-          <line>285</line>
-          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'GetMyClasses'">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/CommonController.cs</url>
+          <line>120</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/CommonController.cs" containingFunctionPresentation="Method 'GetAssignmentContents'">
             <startOffsets>
-              <option value="13072" />
+              <option value="5224" />
             </startOffsets>
             <endOffsets>
-              <option value="13073" />
+              <option value="5225" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
+          <line>119</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'GetStudentsInClass'">
+            <startOffsets>
+              <option value="4191" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4192" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
+          <line>157</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'GetAssignmentsInCategory'">
+            <startOffsets>
+              <option value="6055" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6056" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
+          <line>190</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'GetAssignmentCategories'">
+            <startOffsets>
+              <option value="7758" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7759" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
+          <line>216</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'CreateAssignmentCategory'">
+            <startOffsets>
+              <option value="9252" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9253" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs</url>
+          <line>252</line>
+          <properties documentPath="$PROJECT_DIR$/LMS/Controllers/ProfessorController.cs" containingFunctionPresentation="Method 'CreateAssignment'">
+            <startOffsets>
+              <option value="11372" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11373" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

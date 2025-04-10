@@ -161,7 +161,7 @@ namespace LMS_CustomIdentity.Controllers
                 join cat in db.AssignmentCategories on classes.ClassId equals cat.ClassId
                 join assign in db.Assignments on cat.CategoryId equals assign.CategoryId
                 where Courses.DId == subject && Courses.Number == num && classes.Season == season &&
-                      classes.Year == year && cat.Name == category
+                      classes.Year == year && (cat.Name == category || category == null)
 
                 select new
                 {
@@ -272,6 +272,8 @@ namespace LMS_CustomIdentity.Controllers
                 DueDate = asgdue,
                 CategoryId = query.First(),
             };
+            
+            // TODO - The grades of all students in the class should be updated
             
             db.Assignments.Add(assignment);
             db.SaveChanges();
