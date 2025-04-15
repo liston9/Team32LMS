@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using LMS.Models.LMSModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 [assembly: InternalsVisibleTo( "LMSControllerTests" )]
@@ -273,10 +274,19 @@ namespace LMS_CustomIdentity.Controllers
                 CategoryId = query.First(),
             };
             
-            // TODO - The grades of all students in the class should be updated
-            
             db.Assignments.Add(assignment);
             db.SaveChanges();
+
+            var grades = from Courses in db.Courses
+                join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                join grade in db.Grades on classes.ClassId equals grade.ClassId
+                where Courses.DId == subject && Courses.Number == num && classes.Season == season &&
+                      classes.Year == year
+                select grade;
+            
+            List<Grade> g = grades.ToList();
+            foreach (var grade in g)
+                updateStudentGrade(grade.StudentId, grade.ClassId);
             return Json(new { success = true });
         }
 
@@ -349,7 +359,80 @@ namespace LMS_CustomIdentity.Controllers
             return Json(query.ToArray());
         }
 
+        private void updateStudentGrade(string uid, uint classID)
+        {
+            Dictionary<uint, int> categoryWeights = new();
+            Dictionary<uint, long> studentScoreInCat = new();
+            
+            var cats = from AssignmentCategory in db.AssignmentCategories
+                where AssignmentCategory.ClassId == classID
+                    select AssignmentCategory;
 
+            List<AssignmentCategory> c = cats.ToList();
+            foreach (var category in c)
+            {
+                var classAssigns = from Assignment in db.Assignments
+                    where Assignment.CategoryId == category.CategoryId
+                    select Assignment.MaxPoints;
+
+                long catPoints = 0;
+                foreach (var points in classAssigns)
+                    catPoints += points;
+
+                var studentQuery = from Submission in db.Submissions
+                    join Assignment in db.Assignments on Submission.AssignmentId equals Assignment.AssignmentId
+                    where Submission.StudentId == uid && Assignment.CategoryId == category.CategoryId
+                    select Submission.Score;
+                
+                long studentPoints = 0;
+                List<uint> students = studentQuery.ToList();
+                foreach (var points in students)
+                    studentPoints += points;
+                
+                if (catPoints != 0) {
+                    categoryWeights.Add(category.CategoryId, category.GradeWeight);
+                    studentScoreInCat.Add(category.CategoryId, studentPoints/catPoints);
+                }
+            }
+
+            double factor = 100.0/categoryWeights.Values.Sum();
+            double grade = 0;
+            foreach (var studentScore in studentScoreInCat)
+                grade += studentScore.Value * categoryWeights[studentScore.Key];
+            grade *= factor;
+            string letterGrade;
+            
+            if (grade >= 93)
+                letterGrade = "A";
+            else if (grade >= 90)
+                letterGrade = "A-";
+            else if (grade >= 87)
+                letterGrade = "B+";
+            else if (grade >= 83)
+                letterGrade = "B";
+            else if (grade >= 80)
+                letterGrade = "B-";
+            else if (grade >= 77)
+                letterGrade = "C+";
+            else if (grade >= 73)
+                letterGrade = "C";
+            else if (grade >= 70)
+                letterGrade = "C-";
+            else if (grade >= 67)
+                letterGrade = "D+";
+            else if (grade >= 63)
+                letterGrade = "D";
+            else if (grade >= 60)
+                letterGrade = "D-";
+            else
+                letterGrade = "E";
+            
+            var changeGrade = from Grade in db.Grades
+                where Grade.StudentId == uid && Grade.ClassId == classID
+                    select Grade;
+            changeGrade.First().Grade1 = letterGrade;
+            db.SaveChanges();
+        }
         
         /*******End code to modify********/
     }
