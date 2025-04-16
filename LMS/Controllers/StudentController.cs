@@ -156,8 +156,42 @@ namespace LMS.Controllers
         /// <returns>A JSON object containing {success = true/false}</returns>
         public IActionResult SubmitAssignmentText(string subject, int num, string season, int year,
           string category, string asgname, string uid, string contents)
-        {           
-            return Json(new { success = false });
+        {
+            
+            var query = from Courses in db.Courses
+                join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                join cats in db.AssignmentCategories on classes.ClassId equals cats.ClassId
+                join assigns in db.Assignments on cats.CategoryId equals assigns.CategoryId
+                where Courses.DId == subject && Courses.Number == num && classes.Season == season &&
+                      classes.Year == year && cats.Name == category && assigns.Name == asgname
+                select assigns.AssignmentId;
+
+            var sub = new Submission
+            {
+                Time = DateTime.Now,
+                Score = 0,
+                Contents = contents,
+                AssignmentId = query.First(),
+                StudentId = uid,
+            };
+            
+            //linq update query with sub
+            var query2 = from s in db.Submissions
+                where s.AssignmentId == sub.AssignmentId && s.StudentId == sub.StudentId
+                select s;
+            if (query2.Any())
+            {
+                var submission = query2.First();
+                submission.Contents = sub.Contents;
+                submission.Time = DateTime.Now;
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Submissions.Add(sub);
+                db.SaveChanges();
+            }
+            return Json(new { success = true });
         }
 
 
@@ -208,8 +242,60 @@ namespace LMS.Controllers
         /// <param name="uid">The uid of the student</param>
         /// <returns>A JSON object containing a single field called "gpa" with the number value</returns>
         public IActionResult GetGPA(string uid)
-        {            
-            return Json(null);
+        {
+            
+            var query = from Grade in db.Grades
+                where Grade.StudentId == uid
+                select Grade;
+            var grades = query.ToList();
+            double gradePoints = 0;
+            int numClasses = grades.Count();
+            foreach (var grade in grades)
+            {
+                string letterGrade = grade.Grade1;
+                if(letterGrade == "A"){
+                    gradePoints += 4.0;
+                }
+                else if(letterGrade == "A-"){
+                    gradePoints += 3.7;
+                }
+                else if(letterGrade == "B+"){
+                    gradePoints += 3.3;
+                }
+                else if(letterGrade == "B"){
+                    gradePoints += 3.0;
+                }
+                else if(letterGrade == "B-"){
+                    gradePoints += 2.7;
+                }
+                else if(letterGrade == "C+"){
+                    gradePoints += 2.3;
+                }
+                else if(letterGrade == "C"){
+                    gradePoints += 2.0;
+                }
+                else if(letterGrade == "C-"){
+                    gradePoints += 1.7;
+                }
+                else if(letterGrade == "D+"){
+                    gradePoints += 1.3;
+                }
+                else if(letterGrade == "D"){
+                    gradePoints += 1.0;
+                }
+                else if(letterGrade == "D-"){
+                    gradePoints += 0.7;
+                }
+                else if(letterGrade == "--"){
+                    numClasses--;
+                }
+            }
+            var gpa = new
+            {
+                //dont divide by zero
+                gpa = numClasses == 0 ? 0.0 : gradePoints / numClasses
+            };
+            return Json(gpa);
         }
                 
         /*******End code to modify********/
