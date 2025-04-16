@@ -290,7 +290,6 @@ namespace LMS_CustomIdentity.Controllers
             return Json(new { success = true });
         }
 
-
         /// <summary>
         /// Gets a JSON array of all the submissions to a certain assignment.
         /// Each object in the array should have the following fields:
