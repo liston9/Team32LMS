@@ -211,7 +211,12 @@ namespace LMS.Controllers
                 where Courses.DId == subject && Courses.Number == num && classes.Season == season && classes.Year == year
                     select classes.ClassId;
             
-            var gradeQuery = from Grade in db.Grades where Grade.StudentId == uid select Grade;
+            var gradeQuery = from Courses in db.Courses join classes in db.Classes on Courses.CourseId equals classes.CourseId
+                join Grade in db.Grades on classes.ClassId equals Grade.ClassId
+                where Courses.DId == subject && Courses.Number == num && classes.Season == season 
+                      && classes.Year == year && Grade.StudentId == uid 
+                select Grade;
+            
             if (gradeQuery.Any())
             {
                 return Json(new { success = false });
